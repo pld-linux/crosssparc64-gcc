@@ -5,13 +5,14 @@ Summary(pl):	Skro¶ne narzêdzia programistyczne GNU dla SPARC64 - gcc
 Summary(pt_BR): Utilitários para desenvolvimento de binários da GNU - SPARC64 gcc
 Summary(tr):	GNU geliþtirme araçlarý - SPARC64 gcc
 Name:		crosssparc64-gcc
-Version:	3.2
+Version:	3.3.3
 Release:	1
 Epoch:		1
 License:	GPL
 Group:		Development/Languages
 Source0:	ftp://gcc.gnu.org/pub/gcc/releases/gcc-%{version}/gcc-%{version}.tar.bz2
 # Source0-md5:	13f289fff789927b9b798bf37552019c
+Patch1:		%{name}-3.3.3-include-fix.patch
 BuildRequires:	crosssparc64-binutils
 BuildRequires:	flex
 BuildRequires:	bison
@@ -43,6 +44,8 @@ i386 binariów do uruchamiania na SPARC64 (architektura
 
 %prep
 %setup -q -n gcc-%{version}
+
+%patch1 -p1
 
 %build
 rm -rf obj-%{target}
@@ -76,15 +79,15 @@ cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/lib,%{_datadir},%{_bindir},/usr/lib/gcc-lib/sparc64-pld-linux/3.1/}
+install -d $RPM_BUILD_ROOT{/lib,%{_datadir},%{_bindir},/usr/lib/gcc-lib/sparc64-pld-linux/3.3.3/}
 
 cd obj-%{target}
 PATH=$PATH:/sbin:%{_sbindir}
 
 %{__make} -C gcc install \
-	prefix=$RPM_BUILD_ROOT%{_prefix} \
-	mandir=$RPM_BUILD_ROOT%{_mandir} \
-	infodir=$RPM_BUILD_ROOT%{_infodir} \
+	prefix=%{_prefix} \
+	mandir=%{_mandir} \
+	infodir=%{_infodir} \
 	gxx_include_dir=$RPM_BUILD_ROOT%{arch}/include/g++ \
 	DESTDIR=$RPM_BUILD_ROOT
 
@@ -114,8 +117,8 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{gccarch}
 %dir %{gcclib}
 %attr(755,root,root) %{gcclib}/cc1
-%attr(755,root,root) %{gcclib}/tradcpp0
-%attr(755,root,root) %{gcclib}/cpp0
+##%attr(755,root,root) %{gcclib}/tradcpp0
+##%attr(755,root,root) %{gcclib}/cpp0
 %attr(755,root,root) %{gcclib}/collect2
 #%%{gcclib}/SYSCALLS.c.X
 %{gcclib}/libgcc.a
