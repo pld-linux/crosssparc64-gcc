@@ -68,6 +68,8 @@ TEXCONFIG=false \
 	--disable-shared \
 	--disable-threads \
 	--enable-languages="c" \
+	--enable-c99 \
+	--enable-long-long \
 	--with-gnu-as \
 	--with-gnu-ld \
 	--with-system-zlib \
