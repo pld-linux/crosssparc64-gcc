@@ -72,7 +72,6 @@ TEXCONFIG=false \
 	--with-gnu-ld \
 	--with-system-zlib \
 	--with-multilib \
-	--with-newlib \
 	--without-headers \
 	--without-x \
 	--target=%{target} \
