@@ -1,3 +1,7 @@
+#
+# TODO:
+#		- symlinks {lib64,ld-*}
+#
 Summary:	Cross SPARC64 GNU binary utility development utilities - gcc
 Summary(es):	Utilitarios para desarrollo de binarios de la GNU - SPARC64 gcc
 Summary(fr):	Utilitaires de développement binaire de GNU - SPARC64 gcc
