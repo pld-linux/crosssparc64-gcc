@@ -1,5 +1,9 @@
-Summary:	Cross MIPSel GNU Binary Utility Development Utilities - gcc
-Summary(pl):	Narzêdzia programistyczne GNU Cross MIPSel - gcc
+Summary:	Cross SPARC64 GNU binary utility development utilities - gcc
+Summary(es):	Utilitarios para desarrollo de binarios de la GNU - SPARC64 gcc
+Summary(fr):	Utilitaires de développement binaire de GNU - SPARC64 gcc
+Summary(pl):	Skro¶ne narzêdzia programistyczne GNU dla SPARC64 - gcc
+Summary(pt_BR): Utilitários para desenvolvimento de binários da GNU - SPARC64 gcc
+Summary(tr):    GNU geliþtirme araçlarý - SPARC64 gcc
 Name:		crosssparc64-gcc
 Version:	3.1
 Release:	1
@@ -25,7 +29,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 This package contains a cross-gcc which allows the creation of
-binaries to be run on sparc64 linux (architecture sparc64-linux)
+binaries to be run on SPARC64 linux (architecture sparc64-linux)
 on i386-machines.
 
 %description -l de
@@ -33,8 +37,9 @@ Dieses Paket enthält einen Cross-gcc, der es erlaubt, auf einem
 i386-Rechner Code für sparc64-Linux zu generieren.
 
 %description -l pl
-Ten pakiet zawiera cross-gcc pozwalaj±cy na robienie binariów do
-uruchamiania na sparc64 (architektura "sparc64-linux") na maszynach i386.
+Ten pakiet zawiera skro¶ny gcc pozwalaj±cy na robienie na maszynach
+i386 binariów do uruchamiania na SPARC64 (architektura
+"sparc64-linux").
 
 %prep
 %setup -q -n gcc-%{version}
