@@ -50,6 +50,7 @@ maszynach binariów do uruchamiania na SPARC64 (architektura
 %setup -q -n gcc-%{version}
 
 %build
+cp -f /usr/share/automake/config.sub .
 rm -rf obj-%{target}
 install -d obj-%{target}
 cd obj-%{target}
