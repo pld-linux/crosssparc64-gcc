@@ -10,7 +10,7 @@ Summary(pt_BR):	Utilitários para desenvolvimento de binários da GNU - SPARC64 gc
 Summary(tr):	GNU geliþtirme araçlarý - SPARC64 gcc
 Name:		crosssparc64-gcc
 Version:	3.4.2
-Release:	2
+Release:	3
 Epoch:		1
 License:	GPL
 Group:		Development/Languages
@@ -23,6 +23,7 @@ BuildRequires:	bison
 BuildRequires:	automake
 BuildRequires:	/bin/bash
 Requires:	crosssparc64-binutils
+Requires:	gcc-dirs
 Obsoletes:	egcs64
 ExcludeArch:	sparc64
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
