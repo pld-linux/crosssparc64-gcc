@@ -23,8 +23,8 @@ BuildRequires:	bison
 BuildRequires:	automake
 BuildRequires:	/bin/bash
 Requires:	crosssparc64-binutils
-ExcludeArch:	sparc64
 Obsoletes:	egcs64
+ExcludeArch:	sparc64
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		target		sparc64-pld-linux
@@ -93,9 +93,10 @@ rm -rf $RPM_BUILD_ROOT
 # don't want this here
 rm -f $RPM_BUILD_ROOT%{_libdir}/libiberty.a
 
-%{target}-strip -g $RPM_BUILD_ROOT%{gcclib}/libgcov.a
 %if 0%{!?debug:1}
 %{target}-strip -g $RPM_BUILD_ROOT%{gcclib}/libgcc.a
+%{target}-strip -g $RPM_BUILD_ROOT%{gcclib}/libgcov.a
+%{target}-strip -g $RPM_BUILD_ROOT%{gcclib}/32/libgcc.a
 %endif
 
 %clean
