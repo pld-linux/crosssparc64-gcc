@@ -2,16 +2,16 @@ Summary:	Cross SPARC64 GNU binary utility development utilities - gcc
 Summary(es):	Utilitarios para desarrollo de binarios de la GNU - SPARC64 gcc
 Summary(fr):	Utilitaires de développement binaire de GNU - SPARC64 gcc
 Summary(pl):	Skro¶ne narzêdzia programistyczne GNU dla SPARC64 - gcc
-Summary(pt_BR): Utilitários para desenvolvimento de binários da GNU - SPARC64 gcc
+Summary(pt_BR):	Utilitários para desenvolvimento de binários da GNU - SPARC64 gcc
 Summary(tr):	GNU geliþtirme araçlarý - SPARC64 gcc
 Name:		crosssparc64-gcc
-Version:	3.4.0
+Version:	3.3.4
 Release:	1
 Epoch:		1
 License:	GPL
 Group:		Development/Languages
 Source0:	ftp://gcc.gnu.org/pub/gcc/releases/gcc-%{version}/gcc-%{version}.tar.bz2
-# Source0-md5:	85c6fc83d51be0fbb4f8205accbaff59
+# Source0-md5:	a1c267b34f05c8660b24251865614d8b
 Patch1:		%{name}-3.3.3-include-fix.patch
 BuildRequires:	crosssparc64-binutils
 BuildRequires:	flex
@@ -63,7 +63,7 @@ TEXCONFIG=false ../configure \
 	--mandir=%{_mandir} \
 	--disable-shared \
 	--enable-haifa \
-	--enable-languages="c" \
+	--enable-languages="c,ada" \
 	--enable-long-long \
 	--enable-namespaces \
 	--with-gnu-as \
@@ -82,7 +82,7 @@ cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/lib,%{_datadir},%{_bindir},/usr/lib/gcc-lib/sparc64-pld-linux/3.3.3/}
+install -d $RPM_BUILD_ROOT{/lib,%{_datadir},%{_bindir},%{gcclib}}
 
 cd obj-%{target}
 PATH=$PATH:/sbin:%{_sbindir}
@@ -120,10 +120,13 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{gccarch}
 %dir %{gcclib}
 %attr(755,root,root) %{gcclib}/cc1
+%attr(755,root,root) %{gcclib}/gnat1
 ##%attr(755,root,root) %{gcclib}/tradcpp0
 ##%attr(755,root,root) %{gcclib}/cpp0
 %attr(755,root,root) %{gcclib}/collect2
 #%%{gcclib}/SYSCALLS.c.X
+%{gcclib}/32
+%{gcclib}/crt*.o
 %{gcclib}/libgcc.a
 %{gcclib}/specs*
 %dir %{gcclib}/include
