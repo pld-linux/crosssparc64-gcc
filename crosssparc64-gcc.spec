@@ -52,7 +52,7 @@ maszynach binariów do uruchamiania na SPARC64 (architektura
 %patch0 -p0
 
 %build
-cp -f /usr/share/automake/config.sub .
+cp -f /usr/share/automake/config.* .
 rm -rf obj-%{target}
 install -d obj-%{target}
 cd obj-%{target}
