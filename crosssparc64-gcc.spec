@@ -11,7 +11,7 @@ Epoch:		1
 License:	GPL
 Group:		Development/Languages
 Source0:	ftp://gcc.gnu.org/pub/gcc/releases/gcc-%{version}/gcc-%{version}.tar.bz2
-# Source0-md5:	13f289fff789927b9b798bf37552019c
+# Source0-md5:	3c6cfd9fcd180481063b4058cf6faff2
 Patch1:		%{name}-3.3.3-include-fix.patch
 BuildRequires:	crosssparc64-binutils
 BuildRequires:	flex
