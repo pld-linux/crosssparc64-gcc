@@ -1,7 +1,3 @@
-#
-# TODO:
-#		- symlinks {lib64,ld-*}
-#
 Summary:	Cross SPARC64 GNU binary utility development utilities - gcc
 Summary(es):	Utilitarios para desarrollo de binarios de la GNU - SPARC64 gcc
 Summary(fr):	Utilitaires de développement binaire de GNU - SPARC64 gcc
@@ -9,13 +5,13 @@ Summary(pl):	Skro¶ne narzêdzia programistyczne GNU dla SPARC64 - gcc
 Summary(pt_BR):	Utilitários para desenvolvimento de binários da GNU - SPARC64 gcc
 Summary(tr):	GNU geliþtirme araçlarý - SPARC64 gcc
 Name:		crosssparc64-gcc
-Version:	3.4.2
-Release:	3
+Version:	3.4.3
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		Development/Languages
 Source0:	ftp://gcc.gnu.org/pub/gcc/releases/gcc-%{version}/gcc-%{version}.tar.bz2
-# Source0-md5:	2fada3a3effd2fd791df09df1f1534b3
+# Source0-md5:	e744b30c834360fccac41eb7269a3011
 Patch0:		%{name}-pr17601.patch
 BuildRequires:	crosssparc64-binutils
 BuildRequires:	flex
