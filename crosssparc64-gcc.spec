@@ -78,21 +78,22 @@ TEXCONFIG=false \
 	--host=%{_target_platform} \
 	--build=%{_target_platform}
 
-%{__make}
+%{__make} all-gcc
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} -C obj-%{target} install \
+%{__make} -C obj-%{target} install-gcc \
 	DESTDIR=$RPM_BUILD_ROOT
 
 # don't want this here
 rm -f $RPM_BUILD_ROOT%{_libdir}/libiberty.a
 
 %if 0%{!?debug:1}
+%{target}-strip -g $RPM_BUILD_ROOT%{gcclib}/32/libgcc.a
+%{target}-strip -g $RPM_BUILD_ROOT%{gcclib}/32/libgcov.a
 %{target}-strip -g $RPM_BUILD_ROOT%{gcclib}/libgcc.a
 %{target}-strip -g $RPM_BUILD_ROOT%{gcclib}/libgcov.a
-%{target}-strip -g $RPM_BUILD_ROOT%{gcclib}/32/libgcc.a
 %endif
 
 %clean
@@ -101,18 +102,18 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/%{target}-cpp
-%attr(755,root,root) %{_bindir}/%{target}-gcc*
-%attr(755,root,root) %{_bindir}/%{target}-gcov
+%attr(755,root,root) %{_bindir}/%{target}-gcc
 %dir %{gccarch}
 %dir %{gcclib}
 %attr(755,root,root) %{gcclib}/cc1
 %attr(755,root,root) %{gcclib}/collect2
-%{gcclib}/crt*.o
-%{gcclib}/libgcc.a
-%{gcclib}/specs*
 %dir %{gcclib}/32
 %{gcclib}/32/crt*.o
 %{gcclib}/32/libgcc.a
+%{gcclib}/crt*.o
+%{gcclib}/libgcc.a
+%{gcclib}/specs*
 %dir %{gcclib}/include
 %{gcclib}/include/*.h
+%{_mandir}/man1/%{target}-cpp.1*
 %{_mandir}/man1/%{target}-gcc.1*
