@@ -9,13 +9,14 @@ Summary(pl):	Skro¶ne narzêdzia programistyczne GNU dla SPARC64 - gcc
 Summary(pt_BR):	Utilitários para desenvolvimento de binários da GNU - SPARC64 gcc
 Summary(tr):	GNU geliþtirme araçlarý - SPARC64 gcc
 Name:		crosssparc64-gcc
-Version:	3.3.4
-Release:	3
+Version:	3.4.2
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		Development/Languages
 Source0:	ftp://gcc.gnu.org/pub/gcc/releases/gcc-%{version}/gcc-%{version}.tar.bz2
-# Source0-md5:	a1c267b34f05c8660b24251865614d8b
+# Source0-md5:	2fada3a3effd2fd791df09df1f1534b3
+Patch0:		%{name}-pr17601.patch
 BuildRequires:	crosssparc64-binutils
 BuildRequires:	flex
 BuildRequires:	bison
@@ -48,6 +49,7 @@ maszynach binariów do uruchamiania na SPARC64 (architektura
 
 %prep
 %setup -q -n gcc-%{version}
+%patch0 -p0
 
 %build
 cp -f /usr/share/automake/config.sub .
