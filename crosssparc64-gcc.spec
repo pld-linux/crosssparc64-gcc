@@ -3,7 +3,7 @@ Summary(es):	Utilitarios para desarrollo de binarios de la GNU - SPARC64 gcc
 Summary(fr):	Utilitaires de développement binaire de GNU - SPARC64 gcc
 Summary(pl):	Skro¶ne narzêdzia programistyczne GNU dla SPARC64 - gcc
 Summary(pt_BR): Utilitários para desenvolvimento de binários da GNU - SPARC64 gcc
-Summary(tr):    GNU geliþtirme araçlarý - SPARC64 gcc
+Summary(tr):	GNU geliþtirme araçlarý - SPARC64 gcc
 Name:		crosssparc64-gcc
 Version:	3.2
 Release:	1
