@@ -19,7 +19,7 @@ Source0:	ftp://gcc.gnu.org/pub/gcc/releases/gcc-%{version}/gcc-%{version}.tar.bz
 BuildRequires:	crosssparc64-binutils
 BuildRequires:	flex
 BuildRequires:	bison
-BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	/bin/bash
 Requires:	crosssparc64-binutils
 ExcludeArch:	sparc64
