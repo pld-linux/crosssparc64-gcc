@@ -63,7 +63,7 @@ TEXCONFIG=false ../configure \
 	--mandir=%{_mandir} \
 	--disable-shared \
 	--enable-haifa \
-	--enable-languages="c,ada" \
+	--enable-languages="c" \
 	--enable-long-long \
 	--enable-namespaces \
 	--with-gnu-as \
@@ -120,7 +120,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{gccarch}
 %dir %{gcclib}
 %attr(755,root,root) %{gcclib}/cc1
-%attr(755,root,root) %{gcclib}/gnat1
 ##%attr(755,root,root) %{gcclib}/tradcpp0
 ##%attr(755,root,root) %{gcclib}/cpp0
 %attr(755,root,root) %{gcclib}/collect2
