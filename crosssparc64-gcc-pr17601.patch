@@ -1,0 +1,34 @@
+Index: gcc/Makefile.in
+===================================================================
+RCS file: /cvs/gcc/gcc/gcc/Makefile.in,v
+retrieving revision 1.1223.2.18
+diff -u -r1.1223.2.18 Makefile.in
+--- gcc/Makefile.in	8 Sep 2004 15:16:02 -0000	1.1223.2.18
++++ gcc/Makefile.in	22 Sep 2004 09:42:49 -0000
+@@ -304,7 +304,7 @@
+     if [ "$(host)" = "$(target)" ] ; then \
+       echo ar; \
+     else \
+-       t='$(program_transform_name)'; echo ar | sed -e $$t ; \
++       echo ar | sed '$(program_transform_name)'; \
+     fi; \
+   fi`
+ AR_FLAGS_FOR_TARGET =
+@@ -317,7 +317,7 @@
+     if [ "$(host)" = "$(target)" ] ; then \
+       echo $(RANLIB); \
+     else \
+-       t='$(program_transform_name)'; echo ranlib | sed -e $$t ; \
++       echo ranlib | sed '$(program_transform_name)'; \
+     fi; \
+   fi`
+ NM_FOR_TARGET = ` \
+@@ -329,7 +329,7 @@
+     if [ "$(host)" = "$(target)" ] ; then \
+       echo nm; \
+     else \
+-       t='$(program_transform_name)'; echo nm | sed -e $$t ; \
++       echo nm | '$(program_transform_name)'; \
+     fi; \
+   fi`
+ 
