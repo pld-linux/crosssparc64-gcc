@@ -5,21 +5,23 @@ Summary(pl):	Skro¶ne narzêdzia programistyczne GNU dla SPARC64 - gcc
 Summary(pt_BR):	Utilitários para desenvolvimento de binários da GNU - SPARC64 gcc
 Summary(tr):	GNU geliþtirme araçlarý - SPARC64 gcc
 Name:		crosssparc64-gcc
-Version:	3.4.3
-Release:	2
+Version:	4.0.1
+%define		_snap	20050514
+Release:	0.%{_snap}.1
 Epoch:		1
 License:	GPL
 Group:		Development/Languages
-Source0:	ftp://gcc.gnu.org/pub/gcc/releases/gcc-%{version}/gcc-%{version}.tar.bz2
+#Source0:	ftp://gcc.gnu.org/pub/gcc/releases/gcc-%{version}/gcc-%{version}.tar.bz2
+Source0:	ftp://gcc.gnu.org/pub/gcc/snapshots/4.0-%{_snap}/gcc-4.0-%{_snap}.tar.bz2
 # Source0-md5:	e744b30c834360fccac41eb7269a3011
-Patch0:		%{name}-pr17601.patch
 URL:		http://gcc.gnu.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	crosssparc64-binutils
+BuildRequires:	fileutils >= 4.1.41
 BuildRequires:	flex
-BuildRequires:	/bin/bash
+BuildRequires:	texinfo >= 4.1
 Requires:	crosssparc64-binutils
 Requires:	gcc-dirs
 Obsoletes:	egcs64
@@ -35,24 +37,21 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 This package contains a cross-gcc which allows the creation of
-binaries to be run on SPARC64 linux (architecture sparc64-linux)
-on other machines.
+binaries to be run on SPARC64 Linux on other machines.
 
 %description -l de
 Dieses Paket enthält einen Cross-gcc, der es erlaubt, auf einem
-anderem Rechner Code für sparc64-Linux zu generieren.
+anderem Rechner Code für SPARC64 Linux zu generieren.
 
 %description -l pl
 Ten pakiet zawiera skro¶ny gcc pozwalaj±cy na robienie na innych
-maszynach binariów do uruchamiania na SPARC64 (architektura
-"sparc64-linux").
+maszynach binariów do uruchamiania na Linuksie SPARC64.
 
 %prep
-%setup -q -n gcc-%{version}
-%patch0 -p0
+#setup -q -n gcc-%{version}
+%setup -q -n gcc-4.0-%{_snap}
 
 %build
-cp -f /usr/share/automake/config.* .
 rm -rf obj-%{target}
 install -d obj-%{target}
 cd obj-%{target}
@@ -72,10 +71,12 @@ TEXCONFIG=false \
 	--enable-languages="c" \
 	--enable-c99 \
 	--enable-long-long \
+	--disable-nls \
 	--with-gnu-as \
 	--with-gnu-ld \
+	--with-mangler-in-ld \
 	--with-system-zlib \
-	--with-multilib \
+	--enable-multilib \
 	--without-headers \
 	--without-x \
 	--target=%{target} \
@@ -90,8 +91,22 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C obj-%{target} install-gcc \
 	DESTDIR=$RPM_BUILD_ROOT
 
+install obj-%{target}/gcc/specs $RPM_BUILD_ROOT%{gcclib}
+
 # don't want this here
 rm -f $RPM_BUILD_ROOT%{_libdir}/libiberty.a
+
+# include/ contains install-tools/include/* and headers that were fixed up
+# by fixincludes, we don't want former
+gccdir=$RPM_BUILD_ROOT%{gcclib}
+mkdir	$gccdir/tmp
+# we have to save these however
+mv -f	$gccdir/include/syslimits.h $gccdir/tmp
+rm -rf	$gccdir/include
+mv -f	$gccdir/tmp $gccdir/include
+cp -f	$gccdir/install-tools/include/*.h $gccdir/include
+# but we don't want anything more from install-tools
+rm -rf	$gccdir/install-tools
 
 %if 0%{!?debug:1}
 %{target}-strip -g $RPM_BUILD_ROOT%{gcclib}/32/libgcc.a
