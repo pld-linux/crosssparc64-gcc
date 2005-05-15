@@ -13,7 +13,7 @@ License:	GPL
 Group:		Development/Languages
 #Source0:	ftp://gcc.gnu.org/pub/gcc/releases/gcc-%{version}/gcc-%{version}.tar.bz2
 Source0:	ftp://gcc.gnu.org/pub/gcc/snapshots/4.0-%{_snap}/gcc-4.0-%{_snap}.tar.bz2
-# Source0-md5:	e744b30c834360fccac41eb7269a3011
+# Source0-md5:	25e147473b14c4bb43cdc53299c3524c
 URL:		http://gcc.gnu.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -47,6 +47,18 @@ anderem Rechner Code für SPARC64 Linux zu generieren.
 Ten pakiet zawiera skro¶ny gcc pozwalaj±cy na robienie na innych
 maszynach binariów do uruchamiania na Linuksie SPARC64.
 
+%package c++
+Summary:	C++ support for crosssparc64-gcc
+Summary(pl):	Obs³uga C++ dla crosssparc64-gcc
+Group:		Development/Languages
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description c++
+This package adds C++ support to the GNU Compiler Collection for SPARC64.
+
+%description c++ -l pl
+Ten pakiet dodaje obs³ugê C++ do kompilatora gcc dla SPARC64.
+
 %prep
 #setup -q -n gcc-%{version}
 %setup -q -n gcc-4.0-%{_snap}
@@ -68,7 +80,7 @@ TEXCONFIG=false \
 	--libexecdir=%{_libdir} \
 	--disable-shared \
 	--disable-threads \
-	--enable-languages="c" \
+	--enable-languages="c,c++" \
 	--enable-c99 \
 	--enable-long-long \
 	--disable-nls \
@@ -136,3 +148,9 @@ rm -rf $RPM_BUILD_ROOT
 %{gcclib}/include/*.h
 %{_mandir}/man1/%{target}-cpp.1*
 %{_mandir}/man1/%{target}-gcc.1*
+
+%files c++
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/%{target}-g++
+%attr(755,root,root) %{gcclib}/cc1plus
+%{_mandir}/man1/%{target}-g++.1*
