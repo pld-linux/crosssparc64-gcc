@@ -1,4 +1,3 @@
-# TODO: configure with ultrasparc (instead of v9) as default cpu
 Summary:	Cross SPARC64 GNU binary utility development utilities - gcc
 Summary(es):	Utilitarios para desarrollo de binarios de la GNU - SPARC64 gcc
 Summary(fr):	Utilitaires de développement binaire de GNU - SPARC64 gcc
@@ -83,6 +82,7 @@ TEXCONFIG=false \
 	--enable-c99 \
 	--enable-long-long \
 	--disable-nls \
+	--with-cpu=ultrasparc \
 	--with-gnu-as \
 	--with-gnu-ld \
 	--with-mangler-in-ld \
