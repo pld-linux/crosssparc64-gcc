@@ -5,13 +5,13 @@ Summary(pl):	Skro¶ne narzêdzia programistyczne GNU dla SPARC64 - gcc
 Summary(pt_BR):	Utilitários para desenvolvimento de binários da GNU - SPARC64 gcc
 Summary(tr):	GNU geliþtirme araçlarý - SPARC64 gcc
 Name:		crosssparc64-gcc
-Version:	4.0.2
-Release:	2
+Version:	4.1.1
+Release:	0.1
 Epoch:		1
 License:	GPL
 Group:		Development/Languages
 Source0:	ftp://gcc.gnu.org/pub/gcc/releases/gcc-%{version}/gcc-%{version}.tar.bz2
-# Source0-md5:	a659b8388cac9db2b13e056e574ceeb0
+# Source0-md5:	ad9f97a4d04982ccf4fd67cb464879f3
 URL:		http://gcc.gnu.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -32,6 +32,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		gcclib		%{gccarch}/%{version}
 
 %define		_noautostrip	.*/libgc.*\\.a
+%define		filterout	-fwrapv -fno-strict-aliasing -gdwarf-2 -g2 -feliminate-dwarf2-dups
 
 %description
 This package contains a cross-gcc which allows the creation of
@@ -67,7 +68,7 @@ install -d obj-%{target}
 cd obj-%{target}
 
 CFLAGS="%{rpmcflags}" \
-CXXFLAGS="%{rpmcflags}" \
+CXXFLAGS="%{rpmcxxflags}" \
 TEXCONFIG=false \
 ../configure \
 	--prefix=%{_prefix} \
